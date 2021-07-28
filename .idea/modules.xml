@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../notesCollection/.idea/notesCollection.iml" filepath="$PROJECT_DIR$/../notesCollection/.idea/notesCollection.iml" />
+      <module fileurl="file://$USER_HOME$/Downloads/tango_with_django_2_code-chapter4/.idea/tango_with_django_2_code-chapter4.iml" filepath="$USER_HOME$/Downloads/tango_with_django_2_code-chapter4/.idea/tango_with_django_2_code-chapter4.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/tango_with_django_project_new.iml" filepath="$PROJECT_DIR$/.idea/tango_with_django_project_new.iml" />
     </modules>
   </component>

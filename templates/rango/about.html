@@ -3,24 +3,23 @@
 
 <html>
   <head>
-      <title>About</title>
+      <title>Rango</title>
   </head>
 
   <body>
      <h1>Rango says...</h1>
      <div>
-         This tutorial has been put together by Ze Zhang.<br/>
-         <strong>{{ boldmessage }}</strong><br/>
+         here is the about page. <br />
+         This tutorial has been put together by Ze Zhang. <br />
+<!--         <strong>{{ boldmessage }}</strong><br />-->
      </div>
      <div>
-         <a href="/rango/">Index</a><br/>
-         <img src="{% static 'images/rango.jpg' %}"
-               alt="Picture of Rango" /><!--新增-->
-
+         <a href="/rango/">Index</a><br />
+         <img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango" /><!--新增-->
+         <img src="{{ MEDIA_URL }}cat.jpg" alt="Picture of a Cat" />
      </div>
-     <div>
-         <img src="{{ MEDIA_URL}}cat.jpg"
-              alt="Picture of Cat"/>
-     </div>
+<!--     <div>-->
+<!--         <img src="{{ MEDIA_URL}}cat.jpg" alt="Picture of Cat"/>-->
+<!--     </div>-->
   </body>
 </html>
