@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+{% load staticfiles %}<!--新增-->
+<!--新增的第一行（{% load staticfiles %}）告诉 Django 模板引擎，我们将在模板中使用静态文-->
+<!--件。这样便可以在模板中使用 static 模板标签引入静态目录中的文件。static "images/-->
+<!--rango.jpg" 告诉 Django，我们想显示静态目录中名为 images/rango.jpg 的图像。static 标签会在-->
+<!--images/rango.jpg 前加上 STATIC_URL 指定的 URL，得到 /static/images/rango.jpg。Django 模板引擎-->
+<!--生成的 HTML 如下：-->
+<!--<img src="/static/images/rango.jpg" alt="Picture of Rango" />-->
+<!--建议为图像设定替代文本，以防图片由于某些原因无法加载。替代文本通过 img 标签的 alt 属性-->
+<!--指定，效果如下。-->
 <html>
   <head>
       <title>Rango</title>
@@ -12,6 +21,9 @@
      </div>
      <div>
          <a href="/rango/about/">About</a><br/>
+         <img src="{% static 'images/rango.jpg' %}"
+               alt="Picture of Rango" /><!--新增-->
+
      </div>
   </body>
 </html>

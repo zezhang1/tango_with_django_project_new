@@ -15,7 +15,12 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
-
+# <workspace>/tango_with_django_project_new/templates/
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+# <workspace>/tango_with_django_project_new/static/
+# 定义好这个变量之后，还要创建一个数据结构，名为 STATICFILES_DIRS。这个数据结构的值是一系列路径，让
+# Django 在其中寻找要伺服的静态文件。默认情况下，settings.py 文件中没有这个列表。在创建之
+# 前，确认这个列表确实不存在。如果定义两次，Django 会混淆的，你自己也是一样。
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
@@ -101,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -117,5 +124,11 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
+STATICFILES_DIRS = [STATIC_DIR,]
 STATIC_URL = '/static/'
+# 我们做了这么多，还没说为什么要这么做。简单来说，STATIC_DIR 和 STATICFILES_DIRS 两个变量
+# 设定静态文件在电脑中的位置；STATIC_URL 变量则指定启动 Django 开发服务器后通过什么 URL
+# 访问静态文件。例如，把 STATIC_URL 设为 /static/ 后，我们可以通过 http://127.0.0.1:8000/static/
+# 访问里面的静态内容。前两个变量相当于服务器端的位置，而第三个变量是客户端访问静态内容
+# 的位置。
+
