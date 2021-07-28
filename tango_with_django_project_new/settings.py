@@ -23,6 +23,8 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 # 前，确认这个列表确实不存在。如果定义两次，Django 会混淆的，你自己也是一样。
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
+MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+# 这一行告诉 Django，媒体文件将上传到 Django 项目根目录中的 media 目录里，即 <workspace>/tango_with_django_project/media/。
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'e475&w$_w=l90v1hq_+q^4-5qegkn&e37n#py$*-i+&v4v7oy-'
@@ -68,6 +70,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
@@ -131,4 +134,8 @@ STATIC_URL = '/static/'
 # 访问静态文件。例如，把 STATIC_URL 设为 /static/ 后，我们可以通过 http://127.0.0.1:8000/static/
 # 访问里面的静态内容。前两个变量相当于服务器端的位置，而第三个变量是客户端访问静态内容
 # 的位置。
+MEDIA_ROOT = MEDIA_DIR
+MEDIA_URL = '/media/'
+# MEDIA_ROOT 变量告诉 Django 在哪里寻找上传的媒体文件，MEDIA_URL 变量则指明通过什么 URL 伺
+# 服媒体文件。
 
