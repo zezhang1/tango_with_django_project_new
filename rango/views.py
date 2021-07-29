@@ -1,12 +1,50 @@
 from django.shortcuts import render
+from rango.models import Category
+from rango.models import Page
 
 # Create your views here.
 from django.http import HttpResponse
 def index(request):
     # return HttpResponse("Rango says hey there partner!<a href='/rango/about/'>About</a>")
-    context_dict={'boldmessage' : "Crunchy, creamy, cookie, candy, cupcake!"}
+    # context_dict={'boldmessage' : "Crunchy, creamy, cookie, candy, cupcake!"}
+    # return render(request, 'rango/index.html', context=context_dict)
+    # 客户对主页的要求之一是显示最受欢迎的 5 个分类
+    # 查询数据库，获取目前存储的所有分类
+    # 按点赞次数倒序排列分类
+    # 获取前 5 个分类（如果分类数少于 5 个，那就获取全部）
+    # 把分类列表放入 context_dict 字典
+    # 稍后传给模板引擎
+    category_list = Category.objects.order_by('-likes')[:5]
+    page_list = Page.objects.order_by('-views')[:5]
+
+    context_dict = {}
+    context_dict['boldmessage'] = 'Crunchy, creamy, cookie, candy, cupcake!'
+    context_dict['categories'] = category_list
+    context_dict['pages'] = page_list
+
+
     return render(request, 'rango/index.html', context=context_dict)
+# 这里的 Category.objects.order_by('-likes')[:5] 从 Category 模型中查询最受欢迎的前 5 个分
+# 类。order_by() 方法的作用是排序，这里我们根据 likes 字段的值倒序排列。-likes 中的 - 号表
+# 示倒序（如果没有 - 号，返回的结果是升序排列的）。因为我们想获得一个分类对象列表，所以
+# 使用 Python 的列表运算符从列表中获取前 5 个对象（[:5]），返回一个 Category 对象子集。
+# 查询结束后，把列表的引用（category_list 变量）传给 context_dict 字典。最后把这个字典作
+# 为模板上下文传给 render() 函数。
+
 def about(request):
     # return HttpResponse("Rango says here is the about page.<a href='/rango/'>Index</a>")
     # context_dict = {'boldmessage': "Crunchy, creamy, cookie, candy, cupcake!"}
     return render(request, 'rango/about.html')
+
+def show_category(request, category_name_slug):
+    context_dict = {}
+    try:
+        category = Category.objects.get(slug=category_name_slug)
+        pages = Page.objects.filter(category=category)
+        context_dict['pages'] = pages
+        context_dict['category'] = category
+    except Category.DoesNotExist:
+        context_dict['pages'] = None
+        context_dict['category'] = None
+
+    return render(request, 'rango/category.html', context=context_dict)

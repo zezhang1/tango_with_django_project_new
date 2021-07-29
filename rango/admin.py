@@ -8,11 +8,14 @@ from rango.models import Category, Page
 class PageAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'url')
 
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
+
 # 要编辑 rango/admin.py 文件，定义 PageAdmin
 # 类，继承自 admin.ModelAdmin。 • 在新增的 PageAdmin 类中添加 list_display = ('title', 'category', 'url')。
 # • 然后注册 PageAdmin 类。要修改 Rango 应用的 admin.py 文件，把
 # admin.site.register(Page) 改成 admin.site.register(Page, PageAdmin)。
-admin.site.register(Category)
+admin.site.register(Category,CategoryAdmin)
 admin.site.register(Page, PageAdmin)
 # admin.site.register(PageAdmin)
 

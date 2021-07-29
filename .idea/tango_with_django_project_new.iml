@@ -6,5 +6,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="notesCollection" />
     <orderEntry type="module" module-name="tango_with_django_2_code-chapter4" />
+    <orderEntry type="module" module-name="tango_with_django_2_code-chapter6" />
   </component>
 </module>
