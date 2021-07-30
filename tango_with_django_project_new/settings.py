@@ -33,7 +33,7 @@ SECRET_KEY = 'e475&w$_w=l90v1hq_+q^4-5qegkn&e37n#py$*-i+&v4v7oy-'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+LOGIN_URL = 'rango:login'
 
 # Application definition
 
