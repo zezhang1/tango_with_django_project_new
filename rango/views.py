@@ -15,6 +15,7 @@ from django.urls import reverse
 # Create your views here.
 from django.http import HttpResponse
 def index(request):
+    request.session.set_test_cookie()
     # return HttpResponse("Rango says hey there partner!<a href='/rango/about/'>About</a>")
     # context_dict={'boldmessage' : "Crunchy, creamy, cookie, candy, cupcake!"}
     # return render(request, 'rango/index.html', context=context_dict)
@@ -42,6 +43,9 @@ def index(request):
 # 为模板上下文传给 render() 函数。
 
 def about(request):
+    if request.session.test_cookie_worked():
+        print('Test cookie worked!')
+        request.session.delete_test_cookie()
     # return HttpResponse("Rango says here is the about page.<a href='/rango/'>Index</a>")
     # context_dict = {'boldmessage': "Crunchy, creamy, cookie, candy, cupcake!"}
     return render(request, 'rango/about.html')
